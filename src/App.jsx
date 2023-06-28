@@ -5,16 +5,16 @@ import { OrbitControls, Center, Gltf, Sky, BakeShadows } from '@react-three/drei
 export default function App() {
 	return (
 		<Canvas shadows gl={{ antialias: false }} camera={{ position: [10, 10, 0] }}>
-			<color attach='background' args={['#dcdcdc']} />
-			<ambientLight intensity={0.2} />
+			<color attach='background' args={['#e2e2e2']} />
+			<ambientLight intensity={0.3} />
 			<directionalLight
 				color='white'
 				intensity={2}
-				angle={0.2}
+				angle={1}
 				penumbra={1}
 				position={[10, 5, 10]}
 				castShadow
-				shadow-mapSize={1024}
+				shadow-mapSize={4096}
 				shadow-bias={0}
 			>
 				<orthographicCamera attach='shadow-camera' args={[-15, 15, 10, -5, 1, 100]} />
@@ -23,18 +23,17 @@ export default function App() {
 			<OrbitControls />
 
 			<Center>
-				<boxGeometry args={[1, 1, 1]} color={'hotpink'} />
 				<Gltf
+					src='/satelite.glb'
+					scale={0.1}
 					castShadow
 					receiveShadow
-					scale={0.1}
-					src='/camargue.glb'
 					inject={<meshStandardMaterial color='white' />}
 				/>
 			</Center>
 
 			<EffectComposer disableNormalPass multisampling={8}>
-				<N8AO aoRadius={50} distanceFalloff={0.3} intensity={6} screenSpaceRadius />
+				<N8AO aoRadius={50} distanceFalloff={0.2} intensity={3} screenSpaceRadius />
 			</EffectComposer>
 			{/* <BakeShadows /> */}
 
