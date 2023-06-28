@@ -4,6 +4,7 @@ import { useGLTF, useTexture } from '@react-three/drei'
 export function Satelite(props) {
 	const { nodes } = useGLTF('/satelite.glb')
 	const texture = useTexture('/tex/sprite.png')
+
 	return (
 		<group {...props} dispose={null}>
 			<points geometry={nodes.Earth.geometry}>
@@ -15,5 +16,3 @@ export function Satelite(props) {
 		</group>
 	)
 }
-
-useGLTF.preload('/satelite.glb')
